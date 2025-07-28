@@ -29,7 +29,7 @@ h2 {
 h3 {
   font-family: "Times New Roman", Times, serif;
   font-size: 1.3em;
-  font-weight: bold;
+  font-weight: normal;
 }
 h4, h5, h6 {
   font-family: "Times New Roman", Times, serif;
@@ -67,23 +67,23 @@ This project was carried out as part of a summer internship at the University of
 
 # **Table of Content**
 
-# Introduction
-## Purpose and Objectives of the Study
-## Why R? Advantages in Visualization
-## Overview of Datasets Used
-## Project Roadmap
+## **1.Introduction**
+### 1.1 Purpose and Objectives of the Study
+### 1.2 Overview of Datasets Used
+### 1.3 Project Roadmap
 
-# Conceptual Background
-## What is Data Visualization?
-## Principles of Effective Visualization
-## Visual Perception & Cognitive Aspects
-## Data Types and Matching Graph Types
-## Avoiding Misleading Visuals
+## **2.R Environment and Packages**
+### 2.1 Why R for Data Visualization?
+### 2.2 Core Features of R We Utilized
+### 2.3 Overview of Key Packages
+### 2.4 Integration with Big Data Tools
+### 2.5 R Environment Setup
 
-# R Environment and Technical Stack
-## Why R for Data Visualization
-## Packages Used: ggplot2, plotly, tmap, sf, dplyr, data.table, leaflet, etc.
-## Integration with Big Data Tools: Spark, Arrow, Hadoop
+
+## **3. Fundamental Concepts of Data Visualization**
+### 3.1 What is Data Visulization,Why Do We Need to Visualize?
+### 3.2 Principles of Effective Visualization
+### 3.3 Integration with Big Data Tools: Spark, Arrow, Hadoop
 
 # Pipeline & Data Preparation
 ## Data Import and Storage (Big Data Perspective)
