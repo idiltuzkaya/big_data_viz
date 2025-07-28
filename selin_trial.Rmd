@@ -83,7 +83,7 @@ This project was carried out as part of a summer internship at the University of
 ## **3. Fundamental Concepts of Data Visualization**
 ### 3.1 What is Data Visulization,Why Do We Need to Visualize?
 ### 3.2 Principles of Effective Visualization
-### 3.3 Integration with Big Data Tools: Spark, Arrow, Hadoop
+### 3.3 Data Types and Appropriate Visualization Techniques
 
 # Pipeline & Data Preparation
 ## Data Import and Storage (Big Data Perspective)
