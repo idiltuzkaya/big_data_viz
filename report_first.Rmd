@@ -106,7 +106,7 @@ output:
 
 ## Contributions and Future Work
 
-# Appendix
+# Appendix.
 
 ## Sample Code Snippets
 
