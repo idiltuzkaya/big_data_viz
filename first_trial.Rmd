@@ -72,8 +72,14 @@ This project was carried out as part of a summer internship at the University of
 ### 1.2 Overview of Datasets Used
 ### 1.3 Project Roadmap
 
-## **2.R Environment and Packages**
+## **2.R Environment and Package Ecosystem**
+
+
 ### 2.1 Why R for Data Visualization?
+
+
+R is considered to be one of the most powerful tools and has a gained significant audience for a variety of factors ranging from its flexibility to rich package ecosystem to built-in integration of statistical computing. ıt'S features also include very efficient data handling and storage facilities, 
+
 ### 2.2 Core Features of R We Utilized
 ### 2.3 Overview of Key Packages
 ### 2.4 Integration with Big Data Tools
