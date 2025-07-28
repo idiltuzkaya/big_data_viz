@@ -369,39 +369,40 @@ Audience</a></li>
 <li><a href="#thanks" id="toc-thanks">Thanks</a></li>
 </ul></li>
 <li><a href="#table-of-content" id="toc-table-of-content"><strong>Table
-of Content</strong></a></li>
-<li><a href="#introduction" id="toc-introduction">Introduction</a>
+of Content</strong></a>
 <ul>
-<li><a href="#purpose-and-objectives-of-the-study" id="toc-purpose-and-objectives-of-the-study">Purpose and Objectives of
-the Study</a></li>
-<li><a href="#why-r-advantages-in-visualization" id="toc-why-r-advantages-in-visualization">Why R? Advantages in
-Visualization</a></li>
-<li><a href="#overview-of-datasets-used" id="toc-overview-of-datasets-used">Overview of Datasets Used</a></li>
-<li><a href="#project-roadmap" id="toc-project-roadmap">Project
+<li><a href="#introduction" id="toc-introduction"><strong>1.Introduction</strong></a>
+<ul>
+<li><a href="#purpose-and-objectives-of-the-study" id="toc-purpose-and-objectives-of-the-study">1.1 Purpose and Objectives
+of the Study</a></li>
+<li><a href="#overview-of-datasets-used" id="toc-overview-of-datasets-used">1.2 Overview of Datasets
+Used</a></li>
+<li><a href="#project-roadmap" id="toc-project-roadmap">1.3 Project
 Roadmap</a></li>
 </ul></li>
-<li><a href="#conceptual-background" id="toc-conceptual-background">Conceptual Background</a>
+<li><a href="#r-environment-and-packages" id="toc-r-environment-and-packages"><strong>2.R Environment and
+Packages</strong></a>
 <ul>
-<li><a href="#what-is-data-visualization" id="toc-what-is-data-visualization">What is Data Visualization?</a></li>
-<li><a href="#principles-of-effective-visualization" id="toc-principles-of-effective-visualization">Principles of Effective
-Visualization</a></li>
-<li><a href="#visual-perception-cognitive-aspects" id="toc-visual-perception-cognitive-aspects">Visual Perception &amp;
-Cognitive Aspects</a></li>
-<li><a href="#data-types-and-matching-graph-types" id="toc-data-types-and-matching-graph-types">Data Types and Matching
-Graph Types</a></li>
-<li><a href="#avoiding-misleading-visuals" id="toc-avoiding-misleading-visuals">Avoiding Misleading
-Visuals</a></li>
+<li><a href="#why-r-for-data-visualization" id="toc-why-r-for-data-visualization">2.1 Why R for Data
+Visualization?</a></li>
+<li><a href="#core-features-of-r-we-utilized" id="toc-core-features-of-r-we-utilized">2.2 Core Features of R We
+Utilized</a></li>
+<li><a href="#overview-of-key-packages" id="toc-overview-of-key-packages">2.3 Overview of Key Packages</a></li>
+<li><a href="#integration-with-big-data-tools" id="toc-integration-with-big-data-tools">2.4 Integration with Big Data
+Tools</a></li>
+<li><a href="#r-environment-setup" id="toc-r-environment-setup">2.5 R
+Environment Setup</a></li>
 </ul></li>
-<li><a href="#r-environment-and-technical-stack" id="toc-r-environment-and-technical-stack">R Environment and Technical
-Stack</a>
+<li><a href="#fundamental-concepts-of-data-visualization" id="toc-fundamental-concepts-of-data-visualization"><strong>3.
+Fundamental Concepts of Data Visualization</strong></a>
 <ul>
-<li><a href="#why-r-for-data-visualization" id="toc-why-r-for-data-visualization">Why R for Data
-Visualization</a></li>
-<li><a href="#packages-used-ggplot2-plotly-tmap-sf-dplyr-data.table-leaflet-etc." id="toc-packages-used-ggplot2-plotly-tmap-sf-dplyr-data.table-leaflet-etc.">Packages
-Used: ggplot2, plotly, tmap, sf, dplyr, data.table, leaflet,
-etc.</a></li>
-<li><a href="#integration-with-big-data-tools-spark-arrow-hadoop" id="toc-integration-with-big-data-tools-spark-arrow-hadoop">Integration
-with Big Data Tools: Spark, Arrow, Hadoop</a></li>
+<li><a href="#what-is-data-visulizationwhy-do-we-need-to-visualize" id="toc-what-is-data-visulizationwhy-do-we-need-to-visualize">3.1 What
+is Data Visulization,Why Do We Need to Visualize?</a></li>
+<li><a href="#principles-of-effective-visualization" id="toc-principles-of-effective-visualization">3.2 Principles of
+Effective Visualization</a></li>
+<li><a href="#integration-with-big-data-tools-spark-arrow-hadoop" id="toc-integration-with-big-data-tools-spark-arrow-hadoop">3.3
+Integration with Big Data Tools: Spark, Arrow, Hadoop</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#pipeline-data-preparation" id="toc-pipeline-data-preparation">Pipeline &amp; Data Preparation</a>
 <ul>
@@ -499,7 +500,7 @@ font-weight: bold;
 h3 {
 font-family: "Times New Roman", Times, serif;
 font-size: 1.3em;
-font-weight: bold;
+font-weight: normal;
 }
 h4, h5, h6 {
 font-family: "Times New Roman", Times, serif;
@@ -569,51 +570,47 @@ to the development of this booklet.</p>
 </div>
 <div id="table-of-content" class="section level1">
 <h1><strong>Table of Content</strong></h1>
+<div id="introduction" class="section level2">
+<h2><strong>1.Introduction</strong></h2>
+<div id="purpose-and-objectives-of-the-study" class="section level3">
+<h3>1.1 Purpose and Objectives of the Study</h3>
 </div>
-<div id="introduction" class="section level1">
-<h1>Introduction</h1>
-<div id="purpose-and-objectives-of-the-study" class="section level2">
-<h2>Purpose and Objectives of the Study</h2>
+<div id="overview-of-datasets-used" class="section level3">
+<h3>1.2 Overview of Datasets Used</h3>
 </div>
-<div id="why-r-advantages-in-visualization" class="section level2">
-<h2>Why R? Advantages in Visualization</h2>
-</div>
-<div id="overview-of-datasets-used" class="section level2">
-<h2>Overview of Datasets Used</h2>
-</div>
-<div id="project-roadmap" class="section level2">
-<h2>Project Roadmap</h2>
+<div id="project-roadmap" class="section level3">
+<h3>1.3 Project Roadmap</h3>
 </div>
 </div>
-<div id="conceptual-background" class="section level1">
-<h1>Conceptual Background</h1>
-<div id="what-is-data-visualization" class="section level2">
-<h2>What is Data Visualization?</h2>
+<div id="r-environment-and-packages" class="section level2">
+<h2><strong>2.R Environment and Packages</strong></h2>
+<div id="why-r-for-data-visualization" class="section level3">
+<h3>2.1 Why R for Data Visualization?</h3>
 </div>
-<div id="principles-of-effective-visualization" class="section level2">
-<h2>Principles of Effective Visualization</h2>
+<div id="core-features-of-r-we-utilized" class="section level3">
+<h3>2.2 Core Features of R We Utilized</h3>
 </div>
-<div id="visual-perception-cognitive-aspects" class="section level2">
-<h2>Visual Perception &amp; Cognitive Aspects</h2>
+<div id="overview-of-key-packages" class="section level3">
+<h3>2.3 Overview of Key Packages</h3>
 </div>
-<div id="data-types-and-matching-graph-types" class="section level2">
-<h2>Data Types and Matching Graph Types</h2>
+<div id="integration-with-big-data-tools" class="section level3">
+<h3>2.4 Integration with Big Data Tools</h3>
 </div>
-<div id="avoiding-misleading-visuals" class="section level2">
-<h2>Avoiding Misleading Visuals</h2>
+<div id="r-environment-setup" class="section level3">
+<h3>2.5 R Environment Setup</h3>
 </div>
 </div>
-<div id="r-environment-and-technical-stack" class="section level1">
-<h1>R Environment and Technical Stack</h1>
-<div id="why-r-for-data-visualization" class="section level2">
-<h2>Why R for Data Visualization</h2>
+<div id="fundamental-concepts-of-data-visualization" class="section level2">
+<h2><strong>3. Fundamental Concepts of Data Visualization</strong></h2>
+<div id="what-is-data-visulizationwhy-do-we-need-to-visualize" class="section level3">
+<h3>3.1 What is Data Visulization,Why Do We Need to Visualize?</h3>
 </div>
-<div id="packages-used-ggplot2-plotly-tmap-sf-dplyr-data.table-leaflet-etc." class="section level2">
-<h2>Packages Used: ggplot2, plotly, tmap, sf, dplyr, data.table,
-leaflet, etc.</h2>
+<div id="principles-of-effective-visualization" class="section level3">
+<h3>3.2 Principles of Effective Visualization</h3>
 </div>
-<div id="integration-with-big-data-tools-spark-arrow-hadoop" class="section level2">
-<h2>Integration with Big Data Tools: Spark, Arrow, Hadoop</h2>
+<div id="integration-with-big-data-tools-spark-arrow-hadoop" class="section level3">
+<h3>3.3 Integration with Big Data Tools: Spark, Arrow, Hadoop</h3>
+</div>
 </div>
 </div>
 <div id="pipeline-data-preparation" class="section level1">
