@@ -1,6 +1,113 @@
 ---
-title: "report_first"
-author: idil tuzkaya - selin aytan
-output: html_document
+title: "big data viz"
+author: "idil tuzkaya"
+date: "2025-07-28"
+output: 
+  html_document: 
+    toc: true
+    toc_depth: 6
+    theme: cerulean
+    number_sections: true
 ---
 
+# Preface
+
+## Project Motivation
+
+## Importance of Data Visualization in the Era of Big Data
+
+##Personal Reflections, Challenges, and Learning Outcomes
+
+# Introduction
+
+## Purpose and Objectives of the Study
+
+## Why R? Advantages in Visualization
+
+## Overview of Datasets Used
+
+## Project Roadmap
+
+# Conceptual Background
+
+## What is Data Visualization?
+
+## Principles of Effective Visualization
+
+## Visual Perception & Cognitive Aspects
+
+## Data Types and Matching Graph Types
+
+## Avoiding Misleading Visuals
+
+# R Environment and Technical Stack
+
+## Why R for Data Visualization
+
+## Packages Used: ggplot2, plotly, tmap, sf, dplyr, data.table, leaflet, etc.
+
+## Integration with Big Data Tools: Spark, Arrow, Hadoop
+
+# Pipeline & Data Preparation
+
+## Data Import and Storage (Big Data Perspective)
+
+## Cleaning Process (Missing Values, Outliers, Formatting)
+
+## Merging Spatial and Non-Spatial Data
+
+## Handling Location Information in R vs Python/Tableau
+
+## Vector vs Bitmap Maps
+
+## Normality Assessment
+
+# Exploratory Data Analysis (EDA)
+
+## Summary Statistics
+
+## Spatial Distribution Analysis?
+
+# Visualizations
+
+## Static Visualizations
+
+### Bar Charts, Histograms, Boxplots
+
+### Scatterplots, Heatmaps, Facets
+
+## Statistical Visualizations:
+
+### Distribution & Density Plots
+
+### Linear and Multiple Regression
+
+### Confidence Intervals and Comparisons
+
+## Temporal Visualizations:?
+
+### Time Series, Line Charts
+
+# Findings and Insights
+
+## Key Visual Patterns
+
+## Interpretation of Statistical Results
+
+## Challenges and Reflections
+
+### Technical & Conceptual Hurdles
+
+### Decisions Made During the Project
+
+# Conclusion
+
+## Summary of Findings
+
+## Contributions and Future Work
+
+# Appendix
+
+## Sample Code Snippets
+
+## Extended Tables or Visuals
