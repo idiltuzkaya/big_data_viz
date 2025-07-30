@@ -5,6 +5,7 @@ date: "2025-07-28"
 output: 
   html_document: 
     toc: true
+    toc_depth: 3
     css: style.css
 ---
 <style>
@@ -37,9 +38,9 @@ h4, h5, h6 {
 }
 </style>
 
-## **Preface**
+## *PREFACE*
 
-### Motivation and Goal
+### *Motivation and Goal*
 
 This booklet was born out of a growing need to communicate complex data in a clear and accessible way. As data grows in volume and complexity, visual tools have become essential for uncovering insights that might otherwise remain hidden.
 
@@ -47,7 +48,7 @@ Motivated by a personal interest in data visualization, this project also aims t
 
 While various tools exist for visualization, this booklet focuses primarily on R, emphasizing its strengths in flexibility, reproducibility, and statistical integration. We also briefly compare R to other tools where relevant, to highlight why it was chosen and how it supports effective data storytelling from preparation to final presentation.
 
-### Challenges and Solutions During the Project
+### *Challenges and Solutions During the Project*
 
 Throughout the project, we encountered several challenges—both technical and conceptual. One of the first difficulties was handling large and complex datasets efficiently within the R environment. Some of the packages required for big data visualization demanded careful memory management and unfamiliar workflows, especially when working with tools like SparkR and Arrow.
 
@@ -57,26 +58,25 @@ We also spent considerable time understanding the underlying structure of the da
 
 Despite these challenges, we approached each problem methodically—consulting documentation, testing alternative solutions, and learning from examples and community discussions. These experiences not only strengthened our understanding of data visualization in R, but also improved our overall problem-solving skills in working with real-world data.
 
-### Target Audience
+### *Target Audience*
 
 This booklet is intended for students, early-stage researchers, and data enthusiasts who want to strengthen their understanding of data visualization using R. It assumes only a basic familiarity with data analysis and aims to present both core principles and practical examples in a clear and accessible way, making it useful for both beginners and those looking to refresh their skills.
 
-### Thanks
+### *Thanks*
 
 This project was carried out as part of a summer internship at the University of Edinburgh, supported by the Erasmus+ programme. We would like to thank Ozan Evkaya, PhD for his valuable guidance and support throughout the process. His feedback and expertise greatly contributed to the development of this booklet.
 
-# **Table of Content**
+# *TABLE OF CONTENT*
 
-## **1.Introduction**
+## *1.Introduction*
 ### 1.1 Purpose and Objectives of the Study
 ### 1.2 Overview of Datasets Used
 ### 1.3 Project Roadmap
 
-## **2.R Environment and Package Ecosystem**
+## *2.R Environment and Package Ecosystem*
 
 
 ### 2.1 Why R for Data Visualization?
-
 
 R is considered to be one of the most powerful tools and has a gained significant audience for a variety of factors ranging from its flexibility to rich package ecosystem to built-in integration of statistical computing. ıt'S features also include very efficient data handling and storage facilities. R boasts a comprehensive ecosystem of packages designed spesifically for data visualization.R is also open sourced and compasses a large and active community of both users and developers. r also integrates quite well with other programming languages like Python and SQL. it also aloows for embedding of R outputs in web applications through frameworks like Shiny, making it easier to share your visualizations in interactive web dashboards or other software applications.In academic and professional settings, the ability to reproduce analyses is crucial. R scripts can be shared and rerun, providing an auditable trail of how your visualizations were created. This is particularly important for transparency in research and reporting.and lastly being an open-source program platform ,R is run without any cost.This makes it a cost-effective solution for data visualization, as there are no licensing fees involved, making it accessible for students, researchers, and businesses alike
 
@@ -84,53 +84,72 @@ R is considered to be one of the most powerful tools and has a gained significan
 ### 2.3 Overview of Key Packages
 ### 2.4 Integration with Big Data Tools
 ### 2.5 R Environment Setup
+### Wrap-up
 
 
-## **3. Fundamental Concepts of Data Visualization**
+## *3. Fundamental Concepts of Data Visualization*
 ### 3.1 What is Data Visulization,Why Do We Need to Visualize?
 ### 3.2 Principles of Effective Visualization
-### 3.3 Integration with Big Data Tools: Spark, Arrow, Hadoop
+### 3.3 Data Types and Appropriate Visualization Techniques
+### Wrap-up
 
-# Pipeline & Data Preparation
-## Data Import and Storage (Big Data Perspective)
-## Cleaning Process (Missing Values, Outliers, Formatting)
-## Merging Spatial and Non-Spatial Data
-## Handling Location Information in R vs Python/Tableau
-## Vector vs Bitmap Maps
-## Normality Assessment
+## *4. Pipeline & Data Preparation*
+### 4.1 Importance of Data Preparation
+### 4.2 Preparation Process in R
+### 4.3 Normality Assesment
+### 4.4 Challenges and Decisions
+### Wrap-up
 
-# Exploratory Data Analysis (EDA)
-## Summary Statistics
-## Spatial Distribution Analysis?
+## *5. Exploratory Data Analysis (EDA)*
+### 5.1 Summary Statistics
 
-# Visualizations
+## *6. Visualizations*
 
-## Static Visualizations
-### Bar Charts, Histograms, Boxplots
-### Scatterplots, Heatmaps, Facets
+### *6.1 Static Visualizations*
+### 6.1.1 Bar Charts 
+### 6.1.2 Histograms 
+### 6.1.3 Boxplots
+### 6.1.4 Scatterplots
 
-## Statistical Visualizations:
-### Distribution & Density Plots
-### Linear and Multiple Regression
-### Confidence Intervals and Comparisons
+### *6.2 Multivariate Visualizations* 
+### 6.2.1 Faceting
+### 6.2.2 Heatmaps
+### 6.2.3 Pair plots
 
-## Temporal Visualizations:?
-### Time Series, Line Charts
+### *6.3 Themes, Labels, Scales*
+### *6.4 Statistical Analysis and Visualizations*
+### 6.4.1 Distribution & Density Plots
+### 6.4.2 Linear and Multiple Regression
+### 6.4.3  Confidence Intervals and Comparisons
+### 6.4.4 Box Plots for Statistical Comparisons
+### 6.4.5 ANOVA
+### Wrap-up
 
-# Findings and Insights
-## Key Visual Patterns
-## Interpretation of Statistical Results
+## *7. Visualizing Geographical Patterns*
+### 7.1 Understanding Spatial Data Types(vektör bitmap farkı)
+### 7.2 Merging Spatial and Non-Spatial Data
+### 7.3 Mapping Tools and Packages in R
+### 7.4 Thematic Mapping and Color Scales
+### 7.5 Best Practices in Spatial Visualizations
+### Wrap-up
+
+## *8. Interactive Visualizations*
+### 8.1 Introduction to Interactivity in R
+### 8.2 Building Interactive Plots with Plotly
+### 8.3 Building Interactive Dashboards with Shiny
+### Integrating Maps into Interactive Visualizations
+### Considerations and Limitations
+### Wrap-up
+
+## *9. Findings and Insights*
+### 9.1 Key Visual Patterns
+### 9.2 Interpretation of Statistical Results
+### 9.3 Challenges and Reflections
 
 
-## Challenges and Reflections
-### Technical & Conceptual Hurdles
-### Decisions Made During the Project
+## *10. Conclusion*
+### 10.1 Summary of Findings
+### 10.2 Contributions and Future Work
 
-# Conclusion
-## Summary of Findings
-## Contributions and Future Work
-
-# Appendix
-## Sample Code Snippets
-## Extended Tables or Visuals
-
+## *REFERENCES*
+## *APPENDIX*
