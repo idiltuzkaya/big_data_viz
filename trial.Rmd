@@ -193,7 +193,7 @@ This dataset contains 6976 observations. This number is quite big so tests like 
 ```{r echo=TRUE, collapse=TRUE}
 
 library(readxl)
-data_path <- "C:\\Users\\Lenovo\\Desktop\\simd2020_withgeog\\simd2020_withinds.xlsx"
+data_path <- "data//simd2020_withgeog//simd2020_withinds.xlsx"
 simd_data <- read_excel(data_path, sheet = "Data")
 
 par(mfrow = c(2, 3))
