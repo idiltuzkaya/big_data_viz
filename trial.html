@@ -13,7 +13,7 @@
 
 <meta name="date" content="2025-07-28" />
 
-<title>R Markdown Trial</title>
+<title>Big Data Visualization</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -351,7 +351,7 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">R Markdown Trial</h1>
+<h1 class="title toc-ignore">Big Data Visualization</h1>
 <h4 class="author">Selin Aytan , Idil Bukre Tuzkaya</h4>
 <h4 class="date">2025-07-28</h4>
 
@@ -601,12 +601,67 @@ to the development of this booklet.</p>
 <h2><em>1.Introduction</em></h2>
 <div id="purpose-and-objectives-of-the-study" class="section level3">
 <h3>1.1 Purpose and Objectives of the Study</h3>
+<p>In today’s world, with the explosive growth of data, deriving
+valuable insights and presenting them in a meaningful way has become
+ever more essential. Particularly, when working with big data,
+statistical analysis alone is often insufficient; supporting these
+analyses with powerful visualizations should be regarded as key priority
+in data-driven decision making.</p>
+<p>This project aims to explore how classic visualization techniques are
+applied to “small” to “moderate” datasets to the realm of big data. Our
+project aims to demonstrate that data visualization is not merely about
+creating graphs, but about generating meaningful insights. It explores
+which types of graphs are suitable for different data structures, how to
+construct them using small to moderate datasets, and how these
+techniques applied when it comes to big data. Furthermore, the
+interactive dashboards and visualizations we used in this booklet
+targets foster engagement with reader. By doing so, we aim to contribute
+open-source materials and support R community. Main focuses of the
+project are:</p>
+<p>Improving practical skills while dealing with big data.</p>
+<p>Utilizing R tools such as Spark, Arrow, ggplot2, and tmap in order to
+create scalable and effective visual representations.</p>
+<p>Highlighting the differences between different types of data, and
+appyling proper visualizations for each.</p>
+<p>Safeguarding that visualizations are accessible and interpretable for
+both technical and general users.</p>
+<p>Promoting scientific transparency by designing reproducible analysis
+process.</p>
+<p>Through this project, we intend to bridge the gap between big data
+and data visualization, illustrating how technical tools in data science
+can be used for powerful representations.</p>
 </div>
 <div id="overview-of-datasets-used" class="section level3">
 <h3>1.2 Overview of Datasets Used</h3>
 </div>
 <div id="project-roadmap" class="section level3">
 <h3>1.3 Project Roadmap</h3>
+<p>This project follows a systematic approach: starting from data
+comprehension and preparation, moving on to creating effective
+visualizations, and finally scaling them to a big data context while
+ensuring reproducibility. Below is a an overview of the major
+stages:</p>
+<ol style="list-style-type: decimal">
+<li>Data Exploration, Understanding, and Preprocessing</li>
+</ol>
+<p>In this step, EDA(Exploratory Data Analysis) was performed to gain a
+solid understanding of the datasets’ fundamental characteristics. This
+process involved handling missing values, assessing normality, and
+identifying data types. In order to apply various visualization
+techniques, we deliberately focused on datasets containing diverse data
+types. Main focus was primarily on Scotland based data, such as
+deprivation and Fringe datasets. In the end, the data was cleaned and
+prepared for visualization.</p>
+<p>2.Initial Visualizations with Small/Moderate Datasets</p>
+<p>For this step, we followed an iterative approach to decide which type
+of visualizations were suitable for each dataset in terms of aesthetics
+and readability. Testing these techniques initially on smaller datasets
+provided remarkable insights into how appropriate they scale in context
+of big data.</p>
+<p>3.Scaling Visualizations to Big Data</p>
+<p>4.Spatial and Interactive Visualizations</p>
+<p>5.Documentation and Reproducibility</p>
+<p>6.Final Outputs and Contribution</p>
 </div>
 </div>
 <div id="r-environment-and-package-ecosystem" class="section level2">
@@ -619,28 +674,135 @@ flexibility to rich package ecosystem to built-in integration of
 statistical computing. ıt’S features also include very efficient data
 handling and storage facilities. R boasts a comprehensive ecosystem of
 packages designed spesifically for data visualization.R is also open
-sourced and compasses a large and active community of both users and
+sourced and encompasses a large and active community of both users and
 developers. r also integrates quite well with other programming
 languages like Python and SQL. it also aloows for embedding of R outputs
-in web applications through frameworks like Shiny, making it easier to
-share your visualizations in interactive web dashboards or other
-software applications.In academic and professional settings, the ability
-to reproduce analyses is crucial. R scripts can be shared and rerun,
-providing an auditable trail of how your visualizations were created.
-This is particularly important for transparency in research and
-reporting.and lastly being an open-source program platform ,R is run
-without any cost.This makes it a cost-effective solution for data
-visualization, as there are no licensing fees involved, making it
-accessible for students, researchers, and businesses alike</p>
+in web applications through frameworks like ,making it easier to share
+visualizations in interactive web dashboards or other software
+applications.In academic and professional settings, the ability to
+reproduce analyses is crucial. R scripts can be shared and rerun,
+providing an auditable trail of how visualizations were created. This is
+particularly important for transparency in research and reporting and
+lastly being an open-source program platform ,R is run without any
+cost.This makes it a cost-effective solution for data visualization, as
+there are no licensing fees involved, making it accessible for students,
+researchers, and businesses alike</p>
 </div>
 <div id="core-features-of-r-we-utilized" class="section level3">
 <h3>2.2 Core Features of R We Utilized</h3>
 </div>
 <div id="overview-of-key-packages" class="section level3">
 <h3>2.3 Overview of Key Packages</h3>
+<ul>
+<li><p><strong>Data Preparation:</strong> Raw datasets were received in
+various formats. those datasets were imported by
+<code>readxl</code>which has no external dependencies making it easy to
+install and use on all operating systems. Main transformations were
+handled by <code>dplyr</code>using its <strong>mutate()</strong>,
+<strong>filter()</strong>, <strong>summarize()</strong> functions to
+keep the dataset concise. Reshaping and handling of missing data was
+handled by <code>tdyr</code>. when datasets grew bigger a switch was
+made to <code>data.table</code> to prioritize speed and memory
+efficency. Combining functions such as <strong>fread()</strong>,
+<strong>fwrite()</strong>, impacted the speed of operation
+greatly.[BURAYA DAHA EKLENİR]. Meanwhile <code>arrow</code> allows R to
+read and write columnar Parquet/ Feather files with minimal memory use
+loading only the columns requested through a
+<code>dplyr</code>compatible interface. This provides compression,
+multi-threaded I/O, and seamless interoperability with Python, Spark,
+and cloud storage all without changing the analyst’s R syntax.</p></li>
+<li><p><strong>Exploratory data analysis:</strong> Base summary
+functions and <strong>apply family</strong> were mainly used
+<code>lapply</code>, <code>sapply</code>, and <code>vapply</code>to name
+a few to deliver loop free computations to improve speed across multiple
+variables.</p></li>
+<li><p><strong>Static and multivariate visualisation:</strong> all fixed
+graphics were produced by <code>ggplot2</code>its grammer of grpahics
+and facet system covered bar charts, histograms, boxplots, scatterplots,
+heatmaps, and pair plots.</p></li>
+<li><p><strong>Spatial Analytics:</strong> Vector geometries were read
+and manipulated using <code>sf</code> package which stores points, lines
+and polygons as list-columns inside asn ordinary data frame. since
+geometries behave like any other columns they can be filtered, mutated
+and joined with <code>dplyr</code>. The package <code>tmap</code> added
+on to the <code>sf</code>package to produce thematic maps with a layer
+syntax resembling the <code>ggplot2</code>package.
+<strong>tm_Shape()</strong> identifies the spatial object,
+<strong>tm_fill()</strong></p></li>
+</ul>
+<p>[chatten aldım] We employed <strong>tm_polygons()</strong> to produce
+a choropleth of deprivation zones, classifying values by quintile for
+immediate comparison across the region. Transport corridors were
+over-laid with <strong>tm_lines()</strong>, giving readers an
+infrastructural frame of reference, while event locations were plotted
+via **tm_dots() and scaled with tm_symbols() to reflect venue density
+and attendance. Continuous elevation data, imported as a raster layer,
+were displayed beneath these vectors with tm_raster() to provide
+topographical context. Layout refinements—legends, margins, scale bars,
+and a north arrow—were applied through tm_layout(), tm_scale_bar(), and
+tm_compass(), yielding publication-ready static output. For stakeholder
+workshops the identical script was switched to interactive mode by
+issuing tmap_mode(“view”), thereby converting the map to a Leaflet
+widget that allowed participants to pan, zoom, and query features in
+real time without additional code.</p>
+<ul>
+<li><strong>Interactive Reporting:</strong> <code>plotly</code>
+converted ggplot objects into zoomable, hover-enabled widgets. Full
+dashboards were assembled in Shiny, whose reactive model lets user
+inputs update outputs without additional JavaScript. When data lived on
+a Spark cluster, <code>sparklyr</code> exposed the same
+<code>dplyr</code> verbs, enabling Shiny panels to query distributed
+storage on demand.</li>
+</ul>
+<p>Together, these packages provide a seamless toolchain: data flow from
+ingestion and cleaning through exploratory statistics, static and
+interactive graphics, spatial mapping, and finally to a web dashboard—
+all within a single, reproducible R environment.</p>
 </div>
 <div id="integration-with-big-data-tools" class="section level3">
 <h3>2.4 Integration with Big Data Tools</h3>
+<p>To meet two opposing requirements—interactive analysis on a laptop
+and batch processing over terabyte-scale tables—this project employs a
+tiered architecture: Hadoop supplies reliable cluster storage and
+coarse-grain cleansing, Arrow delivers high-throughput columnar
+interchange to desktop R, and SparkR provides distributed, in-memory
+analytics when data volumes exceed local resources. Each layer therefore
+addresses a specific constraint (fault tolerance, I/O bandwidth, or
+compute parallelism) while exposing an R interface that preserves a
+single, reproducible code base.</p>
+<p>[ BEN BUNLARI HİÇ KULLANAMDIĞIM İÇİN BİLMİYORUM] * <strong>Hadoop for
+Durable, Cluster-Wide Storage</strong> All raw inputs beyond local-disk
+capacity are ingested into the Hadoop Distributed File System (HDFS),
+whose block replication and fault tolerance guarantee persistence across
+the compute cluster. Initial tokenisation and outlier removal are
+implemented as MapReduce jobs orchestrated by YARN through the rhadoop
+interface, keeping heavy file-level transformations close to the data
+and minimising network traffic. Cleansed outputs are written back to
+HDFS as partitioned text sets that serve as the authoritative source for
+later stages. * <strong>Arrow for Columnar Interchange and Selective
+Retrieval</strong> Intermediate tables are serialised from HDFS to
+compressed Parquet using Apache Arrow’s native writer, then accessed in
+R via the arrow package. The open_dataset() interface exposes these
+partitions as lazy Arrow Datasets, enabling filter(), select(), and
+summarise() operations to run in Arrow’s multithreaded C++ engine and
+stream only requested columns into memory. This columnar workflow
+provides compression, high-bandwidth I/O, and language-agnostic
+interoperability without altering the analyst’s dplyr syntax.</p>
+<ul>
+<li><strong>SparkR for In-Memory Distributed Analytics</strong> When
+full data volumes exceed workstation resources, the pipeline attaches to
+the institutional Apache Spark cluster through SparkR. Parquet files
+produced under Arrow are registered as Spark DataFrames; the familiar
+dplyr verbs are translated into Spark SQL and executed in parallel
+across worker nodes. Model artefacts needed for visualisation return to
+the driver as compact R objects, whereas voluminous prediction tables
+remain distributed on the cluster for downstream consumption.</li>
+</ul>
+<p>By uniting Hadoop’s fault-tolerant storage, Arrow’s high-throughput
+columnar access, and SparkR’s distributed in-memory processing, the same
+R codebase scales effortlessly from laptop-sized prototypes to
+terabyte-level production workloads, offering rapid iteration in
+development and robust performance in deployment.</p>
 </div>
 <div id="r-environment-setup" class="section level3">
 <h3>2.5 R Environment Setup</h3>
