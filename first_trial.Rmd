@@ -156,3 +156,6 @@ R is considered to be one of the most powerful tools and has a gained significan
 ## **APPENDIX**
 
 
+getwd()
+
+

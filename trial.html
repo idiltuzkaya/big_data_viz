@@ -209,6 +209,83 @@ window.buildTabsets = function(tocID) {
 };
 
 </script>
+<script>
+window.initializeCodeFolding = function(show) {
+
+  // handlers for show-all and hide all
+  $("#rmd-show-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('show');
+    });
+  });
+  $("#rmd-hide-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('hide');
+    });
+  });
+
+  // index for unique code element ids
+  var currentIndex = 1;
+
+  // select all R code blocks
+  var rCodeBlocks = $('pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan, pre.julia, pre.foldable');
+  rCodeBlocks.each(function() {
+    // skip if the block has fold-none class
+    if ($(this).hasClass('fold-none')) return;
+
+    // create a collapsable div to wrap the code in
+    var div = $('<div class="collapse r-code-collapse"></div>');
+    var showThis = (show || $(this).hasClass('fold-show')) && !$(this).hasClass('fold-hide');
+    var id = 'rcode-643E0F36' + currentIndex++;
+    div.attr('id', id);
+    $(this).before(div);
+    $(this).detach().appendTo(div);
+
+    // add a show code button right above
+    var showCodeText = $('<span>' + (showThis ? 'Hide' : 'Show') + '</span>');
+    var showCodeButton = $('<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm code-folding-btn pull-right float-right"></button>');
+    showCodeButton.append(showCodeText);
+    showCodeButton
+        .attr('data-toggle', 'collapse')
+        .attr('data-bs-toggle', 'collapse') // BS5
+        .attr('data-target', '#' + id)
+        .attr('data-bs-target', '#' + id)   // BS5
+        .attr('aria-expanded', showThis)
+        .attr('aria-controls', id);
+
+    var buttonRow = $('<div class="row"></div>');
+    var buttonCol = $('<div class="col-md-12"></div>');
+
+    buttonCol.append(showCodeButton);
+    buttonRow.append(buttonCol);
+
+    div.before(buttonRow);
+
+    // show the div if necessary
+    if (showThis) div.collapse('show');
+
+    // update state of button on show/hide
+    //   * Change text
+    //   * add a class for intermediate states styling
+    div.on('hide.bs.collapse', function () {
+      showCodeText.text('Show');
+      showCodeButton.addClass('btn-collapsing');
+    });
+    div.on('hidden.bs.collapse', function () {
+      showCodeButton.removeClass('btn-collapsing');
+    });
+    div.on('show.bs.collapse', function () {
+      showCodeText.text('Hide');
+      showCodeButton.addClass('btn-expanding');
+    });
+    div.on('shown.bs.collapse', function () {
+      showCodeButton.removeClass('btn-expanding');
+    });
+
+  });
+
+}
+</script>
 <style type="text/css">.hljs-literal {
 color: #990073;
 }
@@ -333,6 +410,9 @@ display: none;
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -349,6 +429,14 @@ display: none;
 
 <div id="header">
 
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
 
 
 <h1 class="title toc-ignore">Big Data Visualization</h1>
@@ -359,29 +447,30 @@ display: none;
 
 <div id="TOC">
 <ul>
-<li><a href="#preface" id="toc-preface"><em>PREFACE</em></a>
+<li><a href="#preface" id="toc-preface"><strong>PREFACE</strong></a>
 <ul>
-<li><a href="#motivation-and-goal" id="toc-motivation-and-goal"><em>Motivation and Goal</em></a></li>
-<li><a href="#challenges-and-solutions-during-the-project" id="toc-challenges-and-solutions-during-the-project"><em>Challenges and
-Solutions During the Project</em></a></li>
-<li><a href="#target-audience" id="toc-target-audience"><em>Target
-Audience</em></a></li>
-<li><a href="#thanks" id="toc-thanks"><em>Thanks</em></a></li>
+<li><a href="#motivation-and-goal" id="toc-motivation-and-goal"><strong>Motivation and
+Goal</strong></a></li>
+<li><a href="#challenges-and-solutions-during-the-project" id="toc-challenges-and-solutions-during-the-project"><strong>Challenges
+and Solutions During the Project</strong></a></li>
+<li><a href="#target-audience" id="toc-target-audience"><strong>Target
+Audience</strong></a></li>
+<li><a href="#thanks" id="toc-thanks"><strong>Thanks</strong></a></li>
 </ul></li>
 <li><a href="#table-of-content" id="toc-table-of-content"><em>TABLE OF
 CONTENT</em></a>
 <ul>
-<li><a href="#introduction" id="toc-introduction"><em>1.Introduction</em></a>
+<li><a href="#introduction" id="toc-introduction"><strong>1.Introduction</strong></a>
 <ul>
-<li><a href="#purpose-and-objectives-of-the-study" id="toc-purpose-and-objectives-of-the-study">1.1 Purpose and Objectives
-of the Study</a></li>
-<li><a href="#overview-of-datasets-used" id="toc-overview-of-datasets-used">1.2 Overview of Datasets
-Used</a></li>
-<li><a href="#project-roadmap" id="toc-project-roadmap">1.3 Project
-Roadmap</a></li>
+<li><a href="#purpose-and-objectives-of-the-study" id="toc-purpose-and-objectives-of-the-study"><strong><em>1.1 Purpose and
+Objectives of the Study</em></strong></a></li>
+<li><a href="#overview-of-datasets-used" id="toc-overview-of-datasets-used"><strong><em>1.2 Overview of Datasets
+Used</em></strong></a></li>
+<li><a href="#project-roadmap" id="toc-project-roadmap"><strong><em>1.3
+Project Roadmap</em></strong></a></li>
 </ul></li>
-<li><a href="#r-environment-and-package-ecosystem" id="toc-r-environment-and-package-ecosystem"><em>2.R Environment and
-Package Ecosystem</em></a>
+<li><a href="#r-environment-and-package-ecosystem" id="toc-r-environment-and-package-ecosystem"><strong>2.R Environment and
+Package Ecosystem</strong></a>
 <ul>
 <li><a href="#why-r-for-data-visualization" id="toc-why-r-for-data-visualization">2.1 Why R for Data
 Visualization?</a></li>
@@ -394,8 +483,8 @@ Tools</a></li>
 Environment Setup</a></li>
 <li><a href="#wrap-up" id="toc-wrap-up">Wrap-up</a></li>
 </ul></li>
-<li><a href="#fundamental-concepts-of-data-visualization" id="toc-fundamental-concepts-of-data-visualization"><em>3. Fundamental
-Concepts of Data Visualization</em></a>
+<li><a href="#fundamental-concepts-of-data-visualization" id="toc-fundamental-concepts-of-data-visualization"><strong>3.
+Fundamental Concepts of Data Visualization</strong></a>
 <ul>
 <li><a href="#what-is-data-visulizationwhy-do-we-need-to-visualize" id="toc-what-is-data-visulizationwhy-do-we-need-to-visualize">3.1 What
 is Data Visulization,Why Do We Need to Visualize?</a></li>
@@ -405,42 +494,43 @@ Effective Visualization</a></li>
 Types and Appropriate Visualization Techniques</a></li>
 <li><a href="#wrap-up-1" id="toc-wrap-up-1">Wrap-up</a></li>
 </ul></li>
-<li><a href="#pipeline-data-preparation" id="toc-pipeline-data-preparation"><em>4. Pipeline &amp; Data
-Preparation</em></a>
+<li><a href="#pipeline-data-preparation" id="toc-pipeline-data-preparation"><strong>4. Pipeline &amp; Data
+Preparation</strong></a>
 <ul>
-<li><a href="#importance-of-data-preparation" id="toc-importance-of-data-preparation">4.1 Importance of Data
-Preparation</a></li>
-<li><a href="#preparation-process-in-r" id="toc-preparation-process-in-r">4.2 Preparation Process in R</a></li>
-<li><a href="#normality-assesment" id="toc-normality-assesment">4.3
-Normality Assesment</a></li>
+<li><a href="#importance-of-data-preparation" id="toc-importance-of-data-preparation"><strong><em>4.1 Importance of
+Data Preparation</em></strong></a></li>
+<li><a href="#preparation-process-in-r" id="toc-preparation-process-in-r"><strong><em>4.2 Preparation Process in
+R</em></strong></a></li>
+<li><a href="#normality-assesment" id="toc-normality-assesment"><strong><em>4.3 Normality
+Assesment</em></strong></a></li>
 <li><a href="#challenges-and-decisions" id="toc-challenges-and-decisions">4.4 Challenges and Decisions</a></li>
 <li><a href="#wrap-up-2" id="toc-wrap-up-2">Wrap-up</a></li>
 </ul></li>
-<li><a href="#exploratory-data-analysis-eda" id="toc-exploratory-data-analysis-eda"><em>5. Exploratory Data Analysis
-(EDA)</em></a>
+<li><a href="#exploratory-data-analysis-eda" id="toc-exploratory-data-analysis-eda"><strong>5. Exploratory Data
+Analysis (EDA)</strong></a>
 <ul>
 <li><a href="#summary-statistics" id="toc-summary-statistics">5.1
 Summary Statistics</a></li>
 </ul></li>
-<li><a href="#visualizations" id="toc-visualizations"><em>6.
-Visualizations</em></a>
+<li><a href="#visualizations" id="toc-visualizations"><strong>6.
+Visualizations</strong></a>
 <ul>
-<li><a href="#static-visualizations" id="toc-static-visualizations"><em>6.1 Static
-Visualizations</em></a></li>
+<li><a href="#static-visualizations" id="toc-static-visualizations"><strong>6.1 Static
+Visualizations</strong></a></li>
 <li><a href="#bar-charts" id="toc-bar-charts">6.1.1 Bar Charts</a></li>
 <li><a href="#histograms" id="toc-histograms">6.1.2 Histograms</a></li>
 <li><a href="#boxplots" id="toc-boxplots">6.1.3 Boxplots</a></li>
 <li><a href="#scatterplots" id="toc-scatterplots">6.1.4
 Scatterplots</a></li>
-<li><a href="#multivariate-visualizations" id="toc-multivariate-visualizations"><em>6.2 Multivariate
-Visualizations</em></a></li>
+<li><a href="#multivariate-visualizations" id="toc-multivariate-visualizations"><strong>6.2 Multivariate
+Visualizations</strong></a></li>
 <li><a href="#faceting" id="toc-faceting">6.2.1 Faceting</a></li>
 <li><a href="#heatmaps" id="toc-heatmaps">6.2.2 Heatmaps</a></li>
 <li><a href="#pair-plots" id="toc-pair-plots">6.2.3 Pair plots</a></li>
-<li><a href="#themes-labels-scales" id="toc-themes-labels-scales"><em>6.3 Themes, Labels,
-Scales</em></a></li>
-<li><a href="#statistical-analysis-and-visualizations" id="toc-statistical-analysis-and-visualizations"><em>6.4 Statistical
-Analysis and Visualizations</em></a></li>
+<li><a href="#themes-labels-scales" id="toc-themes-labels-scales"><strong>6.3 Themes, Labels,
+Scales</strong></a></li>
+<li><a href="#statistical-analysis-and-visualizations" id="toc-statistical-analysis-and-visualizations"><strong>6.4 Statistical
+Analysis and Visualizations</strong></a></li>
 <li><a href="#distribution-density-plots" id="toc-distribution-density-plots">6.4.1 Distribution &amp; Density
 Plots</a></li>
 <li><a href="#linear-and-multiple-regression" id="toc-linear-and-multiple-regression">6.4.2 Linear and Multiple
@@ -452,8 +542,8 @@ Statistical Comparisons</a></li>
 <li><a href="#anova" id="toc-anova">6.4.5 ANOVA</a></li>
 <li><a href="#wrap-up-3" id="toc-wrap-up-3">Wrap-up</a></li>
 </ul></li>
-<li><a href="#visualizing-geographical-patterns" id="toc-visualizing-geographical-patterns"><em>7. Visualizing
-Geographical Patterns</em></a>
+<li><a href="#visualizing-geographical-patterns" id="toc-visualizing-geographical-patterns"><strong>7. Visualizing
+Geographical Patterns</strong></a>
 <ul>
 <li><a href="#understanding-spatial-data-typesvekt%C3%B6r-bitmap-fark%C4%B1" id="toc-understanding-spatial-data-typesvektör-bitmap-farkı">7.1
 Understanding Spatial Data Types(vektör bitmap farkı)</a></li>
@@ -467,8 +557,8 @@ Color Scales</a></li>
 Spatial Visualizations</a></li>
 <li><a href="#wrap-up-4" id="toc-wrap-up-4">Wrap-up</a></li>
 </ul></li>
-<li><a href="#interactive-visualizations" id="toc-interactive-visualizations"><em>8. Interactive
-Visualizations</em></a>
+<li><a href="#interactive-visualizations" id="toc-interactive-visualizations"><strong>8. Interactive
+Visualizations</strong></a>
 <ul>
 <li><a href="#introduction-to-interactivity-in-r" id="toc-introduction-to-interactivity-in-r">8.1 Introduction to
 Interactivity in R</a></li>
@@ -482,7 +572,8 @@ Maps into Interactive Visualizations</a></li>
 Limitations</a></li>
 <li><a href="#wrap-up-5" id="toc-wrap-up-5">Wrap-up</a></li>
 </ul></li>
-<li><a href="#findings-and-insights" id="toc-findings-and-insights"><em>9. Findings and Insights</em></a>
+<li><a href="#findings-and-insights" id="toc-findings-and-insights"><strong>9. Findings and
+Insights</strong></a>
 <ul>
 <li><a href="#key-visual-patterns" id="toc-key-visual-patterns">9.1 Key
 Visual Patterns</a></li>
@@ -491,16 +582,16 @@ Statistical Results</a></li>
 <li><a href="#challenges-and-reflections" id="toc-challenges-and-reflections">9.3 Challenges and
 Reflections</a></li>
 </ul></li>
-<li><a href="#conclusion" id="toc-conclusion"><em>10.
-Conclusion</em></a>
+<li><a href="#conclusion" id="toc-conclusion"><strong>10.
+Conclusion</strong></a>
 <ul>
 <li><a href="#summary-of-findings" id="toc-summary-of-findings">10.1
 Summary of Findings</a></li>
 <li><a href="#contributions-and-future-work" id="toc-contributions-and-future-work">10.2 Contributions and Future
 Work</a></li>
 </ul></li>
-<li><a href="#references" id="toc-references"><em>REFERENCES</em></a></li>
-<li><a href="#appendix" id="toc-appendix"><em>APPENDIX</em></a></li>
+<li><a href="#references" id="toc-references"><strong>REFERENCES</strong></a></li>
+<li><a href="#appendix" id="toc-appendix"><strong>APPENDIX</strong></a></li>
 </ul></li>
 </ul>
 </div>
@@ -535,9 +626,9 @@ font-weight: bold;
 }
 </style>
 <div id="preface" class="section level2">
-<h2><em>PREFACE</em></h2>
+<h2><strong>PREFACE</strong></h2>
 <div id="motivation-and-goal" class="section level3">
-<h3><em>Motivation and Goal</em></h3>
+<h3><strong>Motivation and Goal</strong></h3>
 <p>This booklet was born out of a growing need to communicate complex
 data in a clear and accessible way. As data grows in volume and
 complexity, visual tools have become essential for uncovering insights
@@ -555,7 +646,7 @@ supports effective data storytelling from preparation to final
 presentation.</p>
 </div>
 <div id="challenges-and-solutions-during-the-project" class="section level3">
-<h3><em>Challenges and Solutions During the Project</em></h3>
+<h3><strong>Challenges and Solutions During the Project</strong></h3>
 <p>Throughout the project, we encountered several challenges—both
 technical and conceptual. One of the first difficulties was handling
 large and complex datasets efficiently within the R environment. Some of
@@ -578,7 +669,7 @@ also improved our overall problem-solving skills in working with
 real-world data.</p>
 </div>
 <div id="target-audience" class="section level3">
-<h3><em>Target Audience</em></h3>
+<h3><strong>Target Audience</strong></h3>
 <p>This booklet is intended for students, early-stage researchers, and
 data enthusiasts who want to strengthen their understanding of data
 visualization using R. It assumes only a basic familiarity with data
@@ -587,7 +678,7 @@ in a clear and accessible way, making it useful for both beginners and
 those looking to refresh their skills.</p>
 </div>
 <div id="thanks" class="section level3">
-<h3><em>Thanks</em></h3>
+<h3><strong>Thanks</strong></h3>
 <p>This project was carried out as part of a summer internship at the
 University of Edinburgh, supported by the Erasmus+ programme. We would
 like to thank Ozan Evkaya, PhD for his valuable guidance and support
@@ -598,9 +689,10 @@ to the development of this booklet.</p>
 <div id="table-of-content" class="section level1">
 <h1><em>TABLE OF CONTENT</em></h1>
 <div id="introduction" class="section level2">
-<h2><em>1.Introduction</em></h2>
+<h2><strong>1.Introduction</strong></h2>
 <div id="purpose-and-objectives-of-the-study" class="section level3">
-<h3>1.1 Purpose and Objectives of the Study</h3>
+<h3><strong><em>1.1 Purpose and Objectives of the
+Study</em></strong></h3>
 <p>In today’s world, with the explosive growth of data, deriving
 valuable insights and presenting them in a meaningful way has become
 ever more essential. Particularly, when working with big data,
@@ -618,32 +710,44 @@ interactive dashboards and visualizations we used in this booklet
 targets foster engagement with reader. By doing so, we aim to contribute
 open-source materials and support R community. Main focuses of the
 project are:</p>
-<p>Improving practical skills while dealing with big data.</p>
-<p>Utilizing R tools such as Spark, Arrow, ggplot2, and tmap in order to
-create scalable and effective visual representations.</p>
-<p>Highlighting the differences between different types of data, and
-appyling proper visualizations for each.</p>
-<p>Safeguarding that visualizations are accessible and interpretable for
-both technical and general users.</p>
-<p>Promoting scientific transparency by designing reproducible analysis
-process.</p>
+<ul>
+<li><p>Improving practical skills while dealing with big data.</p></li>
+<li><p>Utilizing R tools such as Spark, Arrow, ggplot2, and tmap in
+order to create scalable and effective visual representations.</p></li>
+<li><p>Highlighting the differences between different types of data, and
+appyling proper visualizations for each.</p></li>
+<li><p>Safeguarding that visualizations are accessible and interpretable
+for both technical and general users.</p></li>
+<li><p>Promoting scientific transparency by designing reproducible
+analysis process.</p></li>
+</ul>
 <p>Through this project, we intend to bridge the gap between big data
 and data visualization, illustrating how technical tools in data science
 can be used for powerful representations.</p>
 </div>
 <div id="overview-of-datasets-used" class="section level3">
-<h3>1.2 Overview of Datasets Used</h3>
+<h3><strong><em>1.2 Overview of Datasets Used</em></strong></h3>
+<p>In this Project … datasets are used. Here is the overview:</p>
+<p><strong>Scottish Index of Multiple Deprivation 2020:</strong> The
+Scottish Index of Multiple Deprivation is a relative measure of
+deprivation across 6,976 small areas (called data zones). If an area is
+identified as ‘deprived’, this can relate to people having a low income
+but it can also mean fewer resources or opportunities. SIMD looks at the
+extent to which an area is deprived across seven domains: income,
+employment, education, health, access to services, crime and housing.
+The dataset description was obtained from the Scottish Government’s <a href="https://www.gov.scot/collections/scottish-index-of-multiple-deprivation-2020/">Official
+SIMD Documentation</a></p>
+<p><strong>Events Data:</strong></p>
 </div>
 <div id="project-roadmap" class="section level3">
-<h3>1.3 Project Roadmap</h3>
+<h3><strong><em>1.3 Project Roadmap</em></strong></h3>
 <p>This project follows a systematic approach: starting from data
 comprehension and preparation, moving on to creating effective
 visualizations, and finally scaling them to a big data context while
 ensuring reproducibility. Below is a an overview of the major
 stages:</p>
-<ol style="list-style-type: decimal">
-<li>Data Exploration, Understanding, and Preprocessing</li>
-</ol>
+<p><strong>1. Data Exploration, Understanding, and
+Preprocessing</strong></p>
 <p>In this step, EDA(Exploratory Data Analysis) was performed to gain a
 solid understanding of the datasets’ fundamental characteristics. This
 process involved handling missing values, assessing normality, and
@@ -652,20 +756,21 @@ techniques, we deliberately focused on datasets containing diverse data
 types. Main focus was primarily on Scotland based data, such as
 deprivation and Fringe datasets. In the end, the data was cleaned and
 prepared for visualization.</p>
-<p>2.Initial Visualizations with Small/Moderate Datasets</p>
+<p><strong>2.Initial Visualizations with Small/Moderate
+Datasets</strong></p>
 <p>For this step, we followed an iterative approach to decide which type
 of visualizations were suitable for each dataset in terms of aesthetics
 and readability. Testing these techniques initially on smaller datasets
 provided remarkable insights into how appropriate they scale in context
 of big data.</p>
-<p>3.Scaling Visualizations to Big Data</p>
-<p>4.Spatial and Interactive Visualizations</p>
-<p>5.Documentation and Reproducibility</p>
-<p>6.Final Outputs and Contribution</p>
+<p><strong>3.Scaling Visualizations to Big Data</strong></p>
+<p><strong>4.Spatial and Interactive Visualizations</strong></p>
+<p><strong>5.Documentation and Reproducibility</strong></p>
+<p><strong>6.Final Outputs and Contribution</strong></p>
 </div>
 </div>
 <div id="r-environment-and-package-ecosystem" class="section level2">
-<h2><em>2.R Environment and Package Ecosystem</em></h2>
+<h2><strong>2.R Environment and Package Ecosystem</strong></h2>
 <div id="why-r-for-data-visualization" class="section level3">
 <h3>2.1 Why R for Data Visualization?</h3>
 <p>R is considered to be one of the most powerful tools and has a gained
@@ -812,7 +917,7 @@ development and robust performance in deployment.</p>
 </div>
 </div>
 <div id="fundamental-concepts-of-data-visualization" class="section level2">
-<h2><em>3. Fundamental Concepts of Data Visualization</em></h2>
+<h2><strong>3. Fundamental Concepts of Data Visualization</strong></h2>
 <div id="what-is-data-visulizationwhy-do-we-need-to-visualize" class="section level3">
 <h3>3.1 What is Data Visulization,Why Do We Need to Visualize?</h3>
 </div>
@@ -827,15 +932,58 @@ development and robust performance in deployment.</p>
 </div>
 </div>
 <div id="pipeline-data-preparation" class="section level2">
-<h2><em>4. Pipeline &amp; Data Preparation</em></h2>
+<h2><strong>4. Pipeline &amp; Data Preparation</strong></h2>
 <div id="importance-of-data-preparation" class="section level3">
-<h3>4.1 Importance of Data Preparation</h3>
+<h3><strong><em>4.1 Importance of Data Preparation</em></strong></h3>
+<p>Data preparation is one of the most crucial steps for visualization.
+Raw data is often not suitable for further analysis. It may contain
+missing values, inappropriate data formats or variables that do not
+follow a normal distribution. Visualizing non-prepared data can yield us
+to misleading visualizations and wrong outcomes. Therefore, preparing
+data at first is an essential step, since proper preparation not only
+improves the quality but also increases transparency of visualizations.
+In this chapter, we will discuss how to prepare data in R environment
+for different sizes of datasets.</p>
 </div>
 <div id="preparation-process-in-r" class="section level3">
-<h3>4.2 Preparation Process in R</h3>
+<h3><strong><em>4.2 Preparation Process in R</em></strong></h3>
+<p><strong>For Multiple Deprivation Dataset:</strong></p>
+<p>Format dönüştürdük, numerik yaptık…</p>
 </div>
 <div id="normality-assesment" class="section level3">
-<h3>4.3 Normality Assesment</h3>
+<h3><strong><em>4.3 Normality Assesment</em></strong></h3>
+<p><strong>For Multiple Deprivation Dataset:</strong></p>
+<p>This dataset contains 6976 observations. This number is quite big so
+tests like Shapiro Wilk Normality or Lilliefors Test may give
+inconsistent results, since these tests become sensitive to any small
+change as sample size increases. So the most valid option to asses
+normality here is drawing QQ-Plots of the variables we plan to use.</p>
+<pre class="r"><code>
+library(readxl)
+## Warning: package &#39;readxl&#39; was built under R version 4.4.3
+data_path &lt;- &quot;C:\\Users\\Lenovo\\Desktop\\simd2020_withgeog\\simd2020_withinds.xlsx&quot;
+simd_data &lt;- read_excel(data_path, sheet = &quot;Data&quot;)
+
+par(mfrow = c(2, 3))
+
+qqnorm(simd_data$income_rate, col = &quot;black&quot;, pch = 20, cex = 0.5, main = &quot;QQ Plot- Income Rate&quot;); 
+qqline(simd_data$income_rate, col = &quot;red&quot;, lwd = 2)
+
+qqnorm(simd_data$employment_rate, col = &quot;black&quot;, pch= 20, cex = 0.5, main = &quot;QQ Plot - Employment Rate&quot;); 
+qqline(simd_data$employment_rate, col = &quot;red&quot;, lwd = 2)
+
+qqnorm(simd_data$DEPRESS, col = &quot;black&quot;, pch = 20, cex = 0.5, main = &quot;QQ Plot - Depression&quot;); 
+qqline(simd_data$DEPRESS, col = &quot;red&quot;, lwd = 2)
+
+qqnorm(simd_data$EMERG, col = &quot;black&quot;, pch = 20, cex = 0.5, main = &quot;QQ Plot - Emergency Stays&quot;); 
+qqline(simd_data$EMERG, col = &quot;red&quot;, lwd = 2)
+
+qqnorm(simd_data$overcrowded_rate, col = &quot;black&quot;, pch=20, cex = 0.5, main = &quot;QQ Plot - Overcrowd Rate&quot;); 
+qqline(simd_data$overcrowded_rate, col = &quot;red&quot;, lwd = 2)
+
+qqnorm(simd_data$broadband, col = &quot;black&quot;, pch = 20, cex = 0.5, main = &quot;QQ Plot- Broadband&quot;); 
+qqline(simd_data$broadband, col = &quot;red&quot;, lwd = 2)</code></pre>
+<p><img role="img" src="data:image/png;base64,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" width="672" /></p>
 </div>
 <div id="challenges-and-decisions" class="section level3">
 <h3>4.4 Challenges and Decisions</h3>
@@ -845,15 +993,15 @@ development and robust performance in deployment.</p>
 </div>
 </div>
 <div id="exploratory-data-analysis-eda" class="section level2">
-<h2><em>5. Exploratory Data Analysis (EDA)</em></h2>
+<h2><strong>5. Exploratory Data Analysis (EDA)</strong></h2>
 <div id="summary-statistics" class="section level3">
 <h3>5.1 Summary Statistics</h3>
 </div>
 </div>
 <div id="visualizations" class="section level2">
-<h2><em>6. Visualizations</em></h2>
+<h2><strong>6. Visualizations</strong></h2>
 <div id="static-visualizations" class="section level3">
-<h3><em>6.1 Static Visualizations</em></h3>
+<h3><strong>6.1 Static Visualizations</strong></h3>
 </div>
 <div id="bar-charts" class="section level3">
 <h3>6.1.1 Bar Charts</h3>
@@ -868,7 +1016,7 @@ development and robust performance in deployment.</p>
 <h3>6.1.4 Scatterplots</h3>
 </div>
 <div id="multivariate-visualizations" class="section level3">
-<h3><em>6.2 Multivariate Visualizations</em></h3>
+<h3><strong>6.2 Multivariate Visualizations</strong></h3>
 </div>
 <div id="faceting" class="section level3">
 <h3>6.2.1 Faceting</h3>
@@ -880,10 +1028,10 @@ development and robust performance in deployment.</p>
 <h3>6.2.3 Pair plots</h3>
 </div>
 <div id="themes-labels-scales" class="section level3">
-<h3><em>6.3 Themes, Labels, Scales</em></h3>
+<h3><strong>6.3 Themes, Labels, Scales</strong></h3>
 </div>
 <div id="statistical-analysis-and-visualizations" class="section level3">
-<h3><em>6.4 Statistical Analysis and Visualizations</em></h3>
+<h3><strong>6.4 Statistical Analysis and Visualizations</strong></h3>
 </div>
 <div id="distribution-density-plots" class="section level3">
 <h3>6.4.1 Distribution &amp; Density Plots</h3>
@@ -905,7 +1053,7 @@ development and robust performance in deployment.</p>
 </div>
 </div>
 <div id="visualizing-geographical-patterns" class="section level2">
-<h2><em>7. Visualizing Geographical Patterns</em></h2>
+<h2><strong>7. Visualizing Geographical Patterns</strong></h2>
 <div id="understanding-spatial-data-typesvektör-bitmap-farkı" class="section level3">
 <h3>7.1 Understanding Spatial Data Types(vektör bitmap farkı)</h3>
 </div>
@@ -926,7 +1074,7 @@ development and robust performance in deployment.</p>
 </div>
 </div>
 <div id="interactive-visualizations" class="section level2">
-<h2><em>8. Interactive Visualizations</em></h2>
+<h2><strong>8. Interactive Visualizations</strong></h2>
 <div id="introduction-to-interactivity-in-r" class="section level3">
 <h3>8.1 Introduction to Interactivity in R</h3>
 </div>
@@ -947,7 +1095,7 @@ development and robust performance in deployment.</p>
 </div>
 </div>
 <div id="findings-and-insights" class="section level2">
-<h2><em>9. Findings and Insights</em></h2>
+<h2><strong>9. Findings and Insights</strong></h2>
 <div id="key-visual-patterns" class="section level3">
 <h3>9.1 Key Visual Patterns</h3>
 </div>
@@ -959,7 +1107,7 @@ development and robust performance in deployment.</p>
 </div>
 </div>
 <div id="conclusion" class="section level2">
-<h2><em>10. Conclusion</em></h2>
+<h2><strong>10. Conclusion</strong></h2>
 <div id="summary-of-findings" class="section level3">
 <h3>10.1 Summary of Findings</h3>
 </div>
@@ -968,10 +1116,10 @@ development and robust performance in deployment.</p>
 </div>
 </div>
 <div id="references" class="section level2">
-<h2><em>REFERENCES</em></h2>
+<h2><strong>REFERENCES</strong></h2>
 </div>
 <div id="appendix" class="section level2">
-<h2><em>APPENDIX</em></h2>
+<h2><strong>APPENDIX</strong></h2>
 </div>
 </div>
 
@@ -1008,6 +1156,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
