@@ -203,7 +203,8 @@ outliers3 %>%
   select(`Lowest full price`)
 
 
-
+.Renviron
+usethis::edit_r_environ()
 #------------------------------------------------------------
 sum(which(is.na(clean_second$`Artist type`)))
 library(ggplot2)
@@ -689,7 +690,7 @@ library(viridis)
 
 cols <- viridis(length(unique(clean_fifth$Genre)), option = "A")
 treemap(clean_fifth,
-        index = c( "Artist type","Genre"),
+        index = c( "Genre", "Artist type"),
         vSize = "Performances #",
         vColor = "Genre",
         type = "index" ,
@@ -699,7 +700,7 @@ treemap(clean_fifth,
         border.lwds = c(0,1),
         bg.labels = 0,
         border.col = "black",
-        fontsize.labels = c(0,6),
+        fontsize.labels = c(1,20),
         fontcolor.labels =c(1,1),
         fontfamily.labels = "Times",
         fontface.labels = c(3,2),
@@ -720,9 +721,9 @@ library(RColorBrewer)
 cols <- brewer.pal(length(unique(clean_fifth$Genre)), "Set3")
 
 treemap(clean_fifth,
-        index = c("Genre", "Artist type"),
+        index = c("Artist type", "Genre"),
         vSize = "Performances #",
-        vColor = "Genre",
+        vColor = "Artist type",
         type = "categorical",
         palette = cols,
         
@@ -730,7 +731,7 @@ treemap(clean_fifth,
         border.col = "black",
         
         # Label settings
-        fontsize.labels = c(0, 7),       # 0 for Genre, 7 for Artist type
+        fontsize.labels = c(1, 1),       # 0 for Genre, 7 for Artist type
         fontcolor.labels = c(1, 1),
         fontfamily.labels = "Times",
         fontface.labels = c(3, 2),
